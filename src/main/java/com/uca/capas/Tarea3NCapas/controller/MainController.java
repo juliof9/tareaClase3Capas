@@ -31,14 +31,14 @@ public class MainController {
 		String telfijo = request.getParameter("telfijo");
 		String telmovil = request.getParameter("telMovil");
 		
-		if(nombres.length()>25)
-			lista.add("El campo nombres no puede ser mayor a 25 caracteres");
-		if(apellidos.length()>25)
-			lista.add("El campo apellidos no puede ser mayor a 25 caracteres");
-		if(lugarN.length()>25)
-			lista.add("El campo lugar de nacimiento no puede ser mayor a 25 caracteres");
-		if(lugarprocedencia.length()>100)
-			lista.add("El campo lugar de procedencia no puede ser mayor a 100 caracteres");
+		if(nombres.length()>25 || nombres.length()<1)
+			lista.add("El campo nombres tiene que tener estar 1 y 25 caracteres");
+		if(apellidos.length()>25 || apellidos.length()<1)
+			lista.add("El campo apellidos tiene que tener estar 1 y 25 caracteres");
+		if(lugarN.length()>25 || lugarN.length()<1)
+			lista.add("El campo lugar de nacimiento tiene que estar entre 1 y 25 caracteres");
+		if(lugarprocedencia.length()>100 || lugarprocedencia.length()<1)
+			lista.add("El campo lugar de procedencia tiene que estar entre 1 y 100 caracteres");
 		if(telfijo.length()!=8)
 			lista.add("El numero de telefono fijo tiene que ser de 8 digitos");
 		if(telmovil.length()!=8)
@@ -46,13 +46,6 @@ public class MainController {
 		if(lista == null || lista.isEmpty())
 			lista.add("Alumno ingresado con exito");
 		
-		mav.addObject("nombres",nombres);
-		mav.addObject("apellidos", apellidos);
-		mav.addObject("fechaNacimiento", fechaN);
-		mav.addObject("lugarNacimiento", lugarN);
-		mav.addObject("procedencia", lugarprocedencia);
-		mav.addObject("telfijo", telfijo);
-		mav.addObject("telMovil", telmovil);
 		mav.addObject("Errores",lista);
 		mav.setViewName("views/resultado");			
 		
